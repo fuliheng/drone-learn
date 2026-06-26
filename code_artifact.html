@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球無人機專業人才認證與能力標準</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+        }
+        .tab-btn.active {
+            border-bottom: 4px solid #3b82f6;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold flex items-center">
+                        <i class="fa-solid fa-plane-up mr-3"></i> 無人機專業人才研究智庫
+                    </h1>
+                    <p class="mt-2 text-blue-200 text-sm md:text-base">從「基礎飛行合規」邁向「高階數據產出與產業應用」的雙軌體系分析</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs -->
+            <div class="flex space-x-1 overflow-x-auto pb-0">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active px-4 py-3 text-sm md:text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800 rounded-t-lg transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i>雙軌認證體系
+                </button>
+                <button onclick="switchTab('certifications')" id="tab-certifications" class="tab-btn px-4 py-3 text-sm md:text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800 rounded-t-lg transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-certificate mr-2"></i>專業素養標準
+                </button>
+                <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn px-4 py-3 text-sm md:text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800 rounded-t-lg transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-chart-radar mr-2"></i>能力建構矩陣
+                </button>
+                <button onclick="switchTab('alliances')" id="tab-alliances" class="tab-btn px-4 py-3 text-sm md:text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800 rounded-t-lg transition-colors whitespace-nowrap">
+                    <i class="fa-solid fa-globe mr-2"></i>推動聯盟與智庫
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Section 1: Overview (雙軌制) -->
+        <section id="overview" class="content-section active">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">產業典範轉移：雙軌制認證體系</h2>
+                <p class="mt-4 text-slate-600 leading-relaxed">隨著無人機硬體技術趨於成熟與自動化，全球市場對人才的需求已從單純的「會遙控飛機」轉變為「能解決商業問題」。目前的認證體系已明確分化為兩條平行且互補的軌道。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Track 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-slate-200 card-hover">
+                    <div class="bg-slate-100 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-slate-700">軌道一：合規操作執照</h3>
+                        <span class="bg-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold">基礎門檻</span>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">核心目的</p>
+                                    <p class="text-sm text-slate-600">確保空域安全、合法合規、不造成生命財產損失</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-building-columns text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">主管機關</p>
+                                    <p class="text-sm text-slate-600">各國民航局 (如 FAA, EASA, 台灣民航局)</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-book-open text-orange-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">測驗重點</p>
+                                    <p class="text-sm text-slate-600">航空法規、氣象學、基礎飛行原理、緊急應變</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-blue-200 card-hover relative">
+                    <div class="absolute top-0 right-0 -mt-2 -mr-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg shadow-sm z-10">
+                        高價值領域
+                    </div>
+                    <div class="bg-blue-50 px-6 py-4 border-b border-blue-200 flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-blue-800">軌道二：專業應用素養</h3>
+                        <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">核心競爭力</span>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">核心目的</p>
+                                    <p class="text-sm text-slate-600">確保數據精度、產出商業價值、符合行業標準</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-users-gear text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">認證機構</p>
+                                    <p class="text-sm text-slate-600">國際行業協會、軟硬體原廠、國際標準組織</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-microchip text-orange-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-800">測驗重點</p>
+                                    <p class="text-sm text-slate-600">感測器設定、空間數據處理、熱力學、影像分析</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Graphic Illustration -->
+            <div class="mt-12 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h4 class="text-lg font-semibold text-center mb-6">從門檻到價值的金字塔</h4>
+                <div class="flex flex-col items-center justify-center space-y-2">
+                    <div class="w-full max-w-md bg-blue-600 text-white text-center py-4 rounded-t-lg font-bold shadow-md">
+                        行業領域知識 (產出報告/決策) <br><span class="text-xs font-normal">農損評估、工程進度判讀</span>
+                    </div>
+                    <div class="w-full max-w-lg bg-blue-400 text-white text-center py-4 rounded font-bold shadow-md">
+                        感測與數據力 (數據處理) <br><span class="text-xs font-normal">ASPRS, ITC, Pix4D 認證</span>
+                    </div>
+                    <div class="w-full max-w-xl bg-slate-400 text-white text-center py-4 rounded font-bold shadow-md">
+                        系統操作力 (硬體與規劃) <br><span class="text-xs font-normal">航線規劃、SOP、AUVSI TOP</span>
+                    </div>
+                    <div class="w-full max-w-2xl bg-slate-300 text-slate-700 text-center py-4 rounded-b-lg font-bold shadow-md">
+                        航空合規力 (飛行安全) <br><span class="text-xs font-normal">CAA/FAA 專業操作證 (基礎門檻)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Certifications (專業素養) -->
+        <section id="certifications" class="content-section">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">國際指標性「應用素養與品質」認證標準</h2>
+                <p class="mt-4 text-slate-600 leading-relaxed">這些認證是檢驗操作員是否具備「產業 Domain Know-how」的關鍵指標，確保產出的資料具備商業價值與工程精度。</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Cert 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-indigo-500 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-clipboard-check text-indigo-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">營運與風險管理</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">針對大型專案發包，確保團隊具備嚴謹SOP與安全管理能力。</p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-indigo-700 text-sm">ISO 21384-3</h4>
+                            <p class="text-xs text-slate-600 mt-1">無人機營運程序的國際標準。大型跨國企業發包專案的底層邏輯。</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-indigo-700 text-sm">AUVSI TOP (Level 1-3)</h4>
+                            <p class="text-xs text-slate-600 mt-1">國際無人機公會推動，彌補民航局最低標準。著重高風險環境的專業飛行素養。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-emerald-500 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-map text-emerald-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">空間資訊與測繪</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">產出工程級別 3D 模型與正射影像的必備幾何與地理知識。</p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-emerald-700 text-sm">ASPRS 專業認證</h4>
+                            <p class="text-xs text-slate-600 mt-1">美國攝影測量學會。測驗 GCP 佈設、RTK/PPK 應用及消除鏡頭畸變能力。</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-emerald-700 text-sm">軟體原廠建模認證</h4>
+                            <p class="text-xs text-slate-600 mt-1">如 Pix4D / DJI Terra 認證。確保能熟練進行空三解算與網格優化。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-rose-500 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-rose-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-temperature-high text-rose-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">工業巡檢與 NDT</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">非破壞性檢測 (NDT)，確保正確解讀感測器數據，避免誤判。</p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-rose-700 text-sm">ITC 紅外線熱成像</h4>
+                            <p class="text-xs text-slate-600 mt-1">Level 1-3 認證。確保能正確設定發射率，精準判斷太陽能熱斑或外牆滲漏。</p>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded border border-slate-100">
+                            <h4 class="font-bold text-rose-700 text-sm">特種行業檢測標準</h4>
+                            <p class="text-xs text-slate-600 mt-1">針對橋樑、風機葉片或油氣管道的專屬外觀缺陷判讀訓練與認證。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Matrix (能力矩陣) -->
+        <section id="matrix" class="content-section">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">人才能力建構矩陣 (Competency Matrix)</h2>
+                <p class="mt-4 text-slate-600 leading-relaxed">請選擇下方不同的產業應用場景，觀察雷達圖中對「四維度能力」的權重需求變化。這有助於為特定產業設計客製化的培訓與認證標準。</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-xl shadow-md border border-slate-200">
+                <!-- Controls -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">選擇應用場景以分析能力需求：</h3>
+                    <div class="space-y-3">
+                        <button onclick="updateChart('basic')" class="matrix-btn w-full text-left px-5 py-4 rounded-lg border border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-between" id="btn-basic">
+                            <div>
+                                <span class="font-bold text-slate-700">1. 基礎航拍 / 業餘愛好</span>
+                                <p class="text-xs text-slate-500 mt-1">風景攝影、簡單影片紀錄</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </button>
+                        <button onclick="updateChart('mapping')" class="matrix-btn w-full text-left px-5 py-4 rounded-lg border border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-between" id="btn-mapping">
+                            <div>
+                                <span class="font-bold text-slate-700">2. 營造與土地測繪</span>
+                                <p class="text-xs text-slate-500 mt-1">產出高精度 3D 模型、土方量計算</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </button>
+                        <button onclick="updateChart('inspection')" class="matrix-btn w-full text-left px-5 py-4 rounded-lg border border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-between" id="btn-inspection">
+                            <div>
+                                <span class="font-bold text-slate-700">3. 綠能與管線巡檢 (熱顯像)</span>
+                                <p class="text-xs text-slate-500 mt-1">太陽能板熱斑檢測、風機葉片巡視</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </button>
+                        <button onclick="updateChart('agri')" class="matrix-btn w-full text-left px-5 py-4 rounded-lg border border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-between" id="btn-agri">
+                            <div>
+                                <span class="font-bold text-slate-700">4. 智慧農業噴灑與光譜分析</span>
+                                <p class="text-xs text-slate-500 mt-1">農藥精準噴灑、植被指數(NDVI)分析</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chart container -->
+                <div class="h-[400px] w-full flex justify-center">
+                    <canvas id="competencyChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Dimension Explanations -->
+            <div class="grid md:grid-cols-4 gap-4 mt-8">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <h4 class="font-bold text-blue-800 text-sm mb-2"><i class="fa-solid fa-plane-circle-check mr-2"></i>航空合規力</h4>
+                    <p class="text-xs text-slate-600">法規遵守、空域申請、基礎氣象判讀。（對應民航局執照）</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                    <h4 class="font-bold text-indigo-800 text-sm mb-2"><i class="fa-solid fa-gamepad mr-2"></i>系統操作力</h4>
+                    <p class="text-xs text-slate-600">自動航線規劃軟體應用、故障排除、電池與硬體維護。</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                    <h4 class="font-bold text-purple-800 text-sm mb-2"><i class="fa-solid fa-camera-retro mr-2"></i>感測與數據力</h4>
+                    <p class="text-xs text-slate-600">感測器參數設定、環境干擾排除、航向重疊率規劃。</p>
+                </div>
+                <div class="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                    <h4 class="font-bold text-pink-800 text-sm mb-2"><i class="fa-solid fa-brain mr-2"></i>行業領域知識</h4>
+                    <p class="text-xs text-slate-600">將圖資與特定行業（如：農損判斷、工程識讀）結合的能力。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Alliances (推動聯盟) -->
+        <section id="alliances" class="content-section">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-blue-600 pl-4">產業推動聯盟與智庫</h2>
+                <p class="mt-4 text-slate-600 leading-relaxed">研究無人機標準化與人才發展，不可忽視國內外正在制定遊戲規則的組織。他們正推動行業從「硬體導向」轉向「數據標準與應用導向」。</p>
+            </div>
+
+            <!-- Taiwan Alliances -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-6 border-b-2 border-slate-200 pb-2 flex items-center">
+                <i class="fa-solid fa-location-dot text-red-500 mr-2"></i> 台灣在地關鍵推動組織
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Alliance TW 1 -->
+                <div class="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-blue-700 text-3xl mb-4"><i class="fa-solid fa-users-viewfinder"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">台灣無人機大聯盟</h3>
+                        <p class="text-xs font-semibold text-blue-600 mb-3">Taiwan Drone Alliance</p>
+                        <p class="text-sm text-slate-700">整合國內產官學研資源，推動無人機國家隊。致力於建構國內供應鏈，並鏈接國際應用標準，為高階應用人才創造市場發包需求與法規環境。</p>
+                    </div>
+                </div>
+
+                <!-- Alliance TW 2 -->
+                <div class="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-blue-700 text-3xl mb-4"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">台灣無人機應用發展協會</h3>
+                        <p class="text-xs font-semibold text-blue-600 mb-3">TUADA</p>
+                        <p class="text-sm text-slate-700">國內推動產學合作的核心協會。近年極力倡導從「基礎考照」延伸至「專業領域（如測繪、群飛展演）」的人才培育、應用認證標準化與雙軌制。</p>
+                    </div>
+                </div>
+
+                <!-- Alliance TW 3 -->
+                <div class="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-blue-700 text-3xl mb-4"><i class="fa-solid fa-building-flag"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">亞創中心 (Space Chiayi)</h3>
+                        <p class="text-xs font-semibold text-blue-600 mb-3">亞洲無人機AI創新應用研發中心</p>
+                        <p class="text-sm text-slate-700">作為台灣無人機最重要的產業聚落與國家級驗證場域。不僅測試硬體，更為高階應用（如 AI 巡檢、物流）提供標準化測試、數據驗證與實作基地。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taiwan Universities -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-6 border-b-2 border-slate-200 pb-2 flex items-center">
+                <i class="fa-solid fa-graduation-cap text-emerald-600 mr-2"></i> 台灣大專院校學術與培育推動
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- University 1 -->
+                <div class="bg-emerald-50 rounded-xl p-6 shadow-sm border border-emerald-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                     <div class="absolute top-0 right-0 w-16 h-16 bg-emerald-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-emerald-700 text-2xl mb-3"><i class="fa-solid fa-microscope"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">頂尖大學研發中心</h3>
+                        <p class="text-xs font-semibold text-emerald-600 mb-3">如：成大航太、交大</p>
+                        <p class="text-sm text-slate-700">偏向底層技術研發（如：飛控演算法、群飛通訊協定）。為產業提供具備自主研發能力的碩博士高階工程人才。</p>
+                    </div>
+                </div>
+
+                <!-- University 2 -->
+                <div class="bg-emerald-50 rounded-xl p-6 shadow-sm border border-emerald-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-emerald-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-emerald-700 text-2xl mb-3"><i class="fa-solid fa-wheat-awn"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">農科與實務應用院校</h3>
+                        <p class="text-xs font-semibold text-emerald-600 mb-3">如：屏科大、中興大學</p>
+                        <p class="text-sm text-slate-700">結合農機系與植保系，是國內「農噴無人機」與「智慧農業多光譜分析」人才培育的重鎮，推動農用標準化操作。</p>
+                    </div>
+                </div>
+
+                <!-- University 3 -->
+                <div class="bg-emerald-50 rounded-xl p-6 shadow-sm border border-emerald-200 card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-emerald-100 rounded-bl-full z-0 opacity-50"></div>
+                    <div class="z-10">
+                        <div class="text-emerald-700 text-2xl mb-3"><i class="fa-solid fa-certificate"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">技職體系考照與實作</h3>
+                        <p class="text-xs font-semibold text-emerald-600 mb-3">多所科大設立無人機中心</p>
+                        <p class="text-sm text-slate-700">設立民航局認可的無人機考場，並將「無人機測繪」、「空拍機巡檢」融入土木、機電系課程，提供大量具備證照的基層實作飛手。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- International Alliances -->
+            <h3 class="text-2xl font-bold text-slate-700 mb-6 border-b-2 border-slate-200 pb-2 flex items-center">
+                <i class="fa-solid fa-globe text-blue-500 mr-2"></i> 國際指標性標準組織
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Alliance Int 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-600 text-3xl mb-4"><i class="fa-solid fa-network-wired"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">GUTMA</h3>
+                        <p class="text-xs font-semibold text-slate-500 mb-3">全球無人機交通管理協會</p>
+                        <p class="text-sm text-slate-600">專注於 UTM (Unmanned Aircraft System Traffic Management)。未來的高階操作員必須具備與 UTM 系統進行數位通訊的素養。</p>
+                    </div>
+                </div>
+
+                <!-- Alliance Int 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-600 text-3xl mb-4"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">CDA</h3>
+                        <p class="text-xs font-semibold text-slate-500 mb-3">商業無人機聯盟</p>
+                        <p class="text-sm text-slate-600">積極遊說政府開放超視距飛行 (BVLOS)，並大力推動無人機在保險、營造、物流等企業端應用的「商業與數據標準化」。</p>
+                    </div>
+                </div>
+
+                <!-- Alliance Int 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-600 text-3xl mb-4"><i class="fa-solid fa-file-contract"></i></div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">ASTM International</h3>
+                        <p class="text-xs font-semibold text-slate-500 mb-3">Committee F38 on UAS</p>
+                        <p class="text-sm text-slate-600">致力於制定無人機設計、性能、品質驗收以及<b>操作人員培訓</b>的全球共識標準，是法規制定者重要的參考依據。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12">
+        <p>© 2026 無人機專業人才研究智庫. All rights reserved.</p>
+        <p class="text-sm mt-2">Designed for Drone Application Competency Analysis</p>
+    </footer>
+
+    <script>
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show target content section
+            document.getElementById(tabId).classList.add('active');
+
+            // Update tab styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'font-bold', 'border-b-4', 'border-blue-300');
+                btn.classList.add('font-medium');
+            });
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.remove('font-medium');
+            activeBtn.classList.add('active');
+            
+            // Re-render chart if matrix tab is selected to ensure correct animation
+            if(tabId === 'matrix' && competencyChart) {
+                competencyChart.update();
+            }
+        }
+
+        // --- Chart.js Logic ---
+        let competencyChart;
+
+        // Data sets for different scenarios
+        const chartData = {
+            basic: {
+                label: '基礎航拍 / 業餘',
+                data: [80, 50, 30, 10], // 合規, 操作, 數據, 知識
+                color: 'rgba(156, 163, 175, 0.5)', // Slate
+                borderColor: 'rgb(107, 114, 128)'
+            },
+            mapping: {
+                label: '營造與土地測繪',
+                data: [90, 85, 95, 70],
+                color: 'rgba(52, 211, 153, 0.5)', // Emerald
+                borderColor: 'rgb(16, 185, 129)'
+            },
+            inspection: {
+                label: '綠能與管線巡檢',
+                data: [95, 80, 90, 85],
+                color: 'rgba(251, 113, 133, 0.5)', // Rose
+                borderColor: 'rgb(225, 29, 72)'
+            },
+            agri: {
+                label: '智慧農業噴灑',
+                data: [85, 95, 60, 95],
+                color: 'rgba(250, 204, 21, 0.5)', // Yellow
+                borderColor: 'rgb(202, 138, 4)'
+            }
+        };
+
+        function initChart() {
+            const ctx = document.getElementById('competencyChart').getContext('2d');
+            
+            competencyChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['航空合規力', '系統操作力', '感測與數據力', '行業領域知識'],
+                    datasets: [{
+                        label: chartData.mapping.label,
+                        data: chartData.mapping.data,
+                        backgroundColor: chartData.mapping.color,
+                        borderColor: chartData.mapping.borderColor,
+                        pointBackgroundColor: chartData.mapping.borderColor,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: chartData.mapping.borderColor,
+                        borderWidth: 2,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans TC', sans-serif",
+                                    weight: 'bold'
+                                },
+                                color: '#334155'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                max: 100,
+                                stepSize: 20,
+                                display: false // Hide numbers on grid lines for cleaner look
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Noto Sans TC', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Set initial active button styling
+            highlightButton('btn-mapping');
+        }
+
+        function updateChart(scenario) {
+            const data = chartData[scenario];
+            
+            competencyChart.data.datasets[0].label = data.label;
+            competencyChart.data.datasets[0].data = data.data;
+            competencyChart.data.datasets[0].backgroundColor = data.color;
+            competencyChart.data.datasets[0].borderColor = data.borderColor;
+            competencyChart.data.datasets[0].pointBackgroundColor = data.borderColor;
+            competencyChart.data.datasets[0].pointHoverBorderColor = data.borderColor;
+            
+            competencyChart.update();
+            
+            highlightButton('btn-' + scenario);
+        }
+
+        function highlightButton(activeId) {
+            // Reset all buttons
+            document.querySelectorAll('.matrix-btn').forEach(btn => {
+                btn.classList.remove('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-200');
+                btn.querySelector('i').classList.remove('text-blue-500');
+                btn.querySelector('i').classList.add('text-slate-400');
+            });
+            
+            // Highlight active button
+            const activeBtn = document.getElementById(activeId);
+            if(activeBtn) {
+                activeBtn.classList.add('border-blue-500', 'bg-blue-50', 'ring-2', 'ring-blue-200');
+                activeBtn.querySelector('i').classList.remove('text-slate-400');
+                activeBtn.querySelector('i').classList.add('text-blue-500');
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initChart();
+        });
+
+    </script>
+</body>
+</html>
